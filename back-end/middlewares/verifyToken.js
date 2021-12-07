@@ -5,7 +5,10 @@ export const verifyToken = (req, res, next) => {
   const Authorization = req.header("authorization");
 
   if (!Authorization) {
-    // err : unauthorization
+    // err : unauthorizd
+    const err = new Error("Unauthgorized");
+    err.statusCode = 401; // Unthorizied
+    return next(err);
   }
 
   //get token
